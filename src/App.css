@@ -1,0 +1,46 @@
+body {
+  background-color: #faf9f9;
+}
+
+.description {
+  color: #9e9fa9;
+}
+
+.navbarLink {
+  color: white;
+  text-decoration: none;
+}
+
+.disabledLink {
+  color: #bebdbd;
+  text-decoration: none;
+  cursor: default;
+}
+
+.activeLink {
+  color: teal;
+  text-decoration: none;
+}
+
+.mediaContainer {
+  position: relative;
+  text-align: center;
+  height: 200px;
+  width: auto;
+  overflow: hidden;
+}
+.mediaContainer img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 1s;
+}
+.mediaContainer img:hover {
+  transform: scale(1.2);
+}
+
+.mediaContainer video {
+  width: 100%;
+  height: 100%;
+  transition: 1s;
+}
