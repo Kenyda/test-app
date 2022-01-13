@@ -9,7 +9,7 @@ import PostListHeader from "../components/posts/PostListHeader";
 export interface IPost {
     id: number;
     description: string;
-    media: string;
+    media?: string;
 }
 
 const Posts = () => {

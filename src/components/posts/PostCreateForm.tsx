@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Box,
     Card,
@@ -6,18 +6,21 @@ import {
     CardContent,
     Container,
     TextField,
-    FormControl,
     Button,
-    CircularProgress, Typography
 } from "@mui/material";
 import PostsAPI from "../../api/PostsAPI";
 import Loading from "../UI/Loading";
 import {Navigate} from "react-router-dom";
+import {useTypedSelector} from "../../hooks/useTypedSelector";
+import {useDispatch} from "react-redux";
+import {IFormState} from "../../store/reducers/formReducer";
+import {resetFormValues, setFormValues} from "../../store/actionCreators/form";
 
 const PostCreateForm = () => {
-    const [values, setValues] = useState({
+    const [values, setValues] = useState<IFormState>({
         description: '',
         media: '',
+        mediaData: undefined,
     })
     const [validationProps, setValidationProps] = useState({
         description: {
@@ -26,10 +29,26 @@ const PostCreateForm = () => {
         }
     })
     const [isLoading, setIsLoading] = useState(false);
+    const [isMounted, setIsMounted] = useState(false);
     const [newPost, setNewPost] = useState<{isCreated: boolean, id: number}>({
         isCreated: false,
         id: 0,
     });
+    const form = useTypedSelector(state => state.form);
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (form) setValues({...form});
+        setIsMounted(true);
+    }, [])
+
+    useEffect(() => {
+        if (isMounted) dispatch(setFormValues(values))
+    }, [values])
+
+    useEffect(() => {
+        dispatch(resetFormValues())
+    }, [newPost])
 
     function validateForm() {
         let isFormValid: boolean;
@@ -53,15 +72,26 @@ const PostCreateForm = () => {
     function createFact() {
         if (validateForm()) {
             setIsLoading(true)
-            PostsAPI.create({...values, id: 0}).then((response) => {
+            PostsAPI.create({...values, media: values.mediaData, id: 0}).then((response) => {
                 setNewPost({isCreated: true, id: response.id})
             })
         }
     }
 
-    function onFileLoad(e: string) {
-        const splitPath = e.split('\\');
-        setValues({...values, media: splitPath[splitPath.length - 1]})
+    function onMediaChange(files: FileList | null) {
+        if (!files) {
+            setValues({...values, media: '', mediaData: undefined})
+        } else {
+            const reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = () => {
+                setValues({...values, media: files[0].name, mediaData: reader.result as string})
+            };
+        }
+    }
+
+    function onDescriptionChange(e: string) {
+        setValues({...values, description: e})
     }
 
 
@@ -88,11 +118,21 @@ const PostCreateForm = () => {
                                         label="Ваш текст"
                                         multiline
                                         value={values.description}
-                                        onChange={e => setValues({...values, description: e.target.value})}
+                                        onChange={e => onDescriptionChange(e.target.value)}
                                     />
-                                    <input type="file"
-                                        onChange={e => onFileLoad(e.target.value)}
-                                    />
+                                    {values.media
+                                        ? <p>{values.media}
+                                            <strong style={{cursor: 'pointer', marginLeft: '10px', color: 'red'}}
+                                                  title={'Удалить файл'}
+                                                  onClick={e => setValues({...values, media: ''})}>
+                                                X
+                                            </strong>
+                                          </p>
+                                        : <input type="file"
+                                                 onChange={e => onMediaChange(e.target.files)}
+                                        />
+                                    }
+
                                 </div>
                                 <Box sx={{
                                     marginTop: '15px',

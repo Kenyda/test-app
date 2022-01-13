@@ -1,4 +1,4 @@
-import {FACTS} from "../components/utils/texts";
+import {FACTS} from "../utils/texts";
 import {IPost} from "../pages/Posts";
 
 export default class PostsAPI {

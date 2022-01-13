@@ -10,7 +10,7 @@ import {
     RouteMatch,
     NavLink
 } from "react-router-dom";
-import {routes, IRoute} from "../utils/routes";
+import {routes, IRoute} from "../../utils/routes";
 
 interface IRouteMatch extends RouteMatch {
     route: IRoute,

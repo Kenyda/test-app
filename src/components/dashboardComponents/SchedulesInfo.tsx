@@ -10,7 +10,7 @@ import {
     ListItemText,
     Typography
 } from "@mui/material";
-import {BREEDS_LIST_DATA} from "../utils/texts";
+import {BREEDS_LIST_DATA} from "../../utils/texts";
 import {NavLink} from "react-router-dom";
 
 const SchedulesInfo = () => {

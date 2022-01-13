@@ -1,6 +1,6 @@
 import React from 'react';
 import {Table, TableBody, TableCell, TableContainer, TableRow} from "@mui/material";
-import {TABLE_DATA} from "./utils/texts";
+import {TABLE_DATA} from "../utils/texts";
 import Paper from '@mui/material/Paper';
 
 const PopularityTable = () => {

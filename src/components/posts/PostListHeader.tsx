@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Card, CardContent, CardHeader, Grid, Typography} from "@mui/material";
 import {NavLink} from "react-router-dom";
-import {FACTS_INTRODUCTION} from "../utils/texts";
+import {FACTS_INTRODUCTION} from "../../utils/texts";
 
 const PostListHeader = () => {
     return (
