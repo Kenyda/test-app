@@ -1,10 +1,20 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Pie } from 'react-chartjs-2';
+import {getDelayValue} from "../../utils/getDelayValue";
+import Loading from "../UI/Loading";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const PopularitySchedule = () => {
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false)
+        }, getDelayValue())
+    }, [])
+
     const data = {
         labels: ['США', 'Китай', 'Россия', 'Бразилия', 'Франция', 'Италия',
             'Великобритания', 'Германия', 'Украина', 'Япония'],
@@ -48,7 +58,9 @@ const PopularitySchedule = () => {
         },
     };
     return (
-        <Pie data={data} options={options}/>
+        isLoading
+            ? <Loading loadingText={"Загрузка..."}/>
+            : <Pie data={data} options={options}/>
     );
 };
 

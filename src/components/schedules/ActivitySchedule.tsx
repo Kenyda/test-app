@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -11,6 +11,8 @@ import {
 } from 'chart.js';
 
 import { Line } from 'react-chartjs-2';
+import {getDelayValue} from "../../utils/getDelayValue";
+import Loading from "../UI/Loading";
 
 ChartJS.register(
     CategoryScale,
@@ -23,6 +25,14 @@ ChartJS.register(
 );
 
 const ActivitySchedule = () => {
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false)
+        }, getDelayValue())
+    }, [])
+
     const labels = ['Хозяин спит', 'Хозяин завтракает', 'Хозяин ушел на работу', 'Прилетела муха',
         'Захотелось поесть', 'Под окном мяучит кошка', 'В дверь позвонили', 'Сверлят дрелью в стенку',
         'Хозяин вернулся, ужинает', 'Хозяин смотрит телевизор', 'Хозяин лег спать'];
@@ -60,7 +70,10 @@ const ActivitySchedule = () => {
     }
     return (
         <div style={{minHeight: '45vh', position: 'relative'}}>
-            <Line options={options} data={data}/>
+            {isLoading
+                ? <Loading loadingText={"Загрузка..."}/>
+                : <Line options={options} data={data}/>
+            }
         </div>
 
     );

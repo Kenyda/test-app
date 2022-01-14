@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -9,6 +9,8 @@ import {
     Legend,
 } from 'chart.js';
 import { Bar } from 'react-chartjs-2';
+import {getDelayValue} from "../../utils/getDelayValue";
+import Loading from "../UI/Loading";
 
 ChartJS.register(
     CategoryScale,
@@ -20,6 +22,14 @@ ChartJS.register(
 );
 
 const BreedsSchedule = () => {
+    const [isLoading, setIsLoading] = useState(true)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoading(false)
+        }, getDelayValue())
+    }, [])
+
     const options = {
         responsive: true,
         plugins: {
@@ -43,7 +53,9 @@ const BreedsSchedule = () => {
         ],
     };
     return (
-        <Bar options={options} data={data} />
+        isLoading
+            ? <Loading loadingText={"Загрузка..."}/>
+            : <Bar options={options} data={data} />
     );
 };
 
