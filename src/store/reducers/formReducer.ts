@@ -1,4 +1,4 @@
-import {actionTypes, formAction, IFormState, IResetAction, ISetAction} from "../../utils/types";
+import {actionTypes, formAction, IFormState} from "../../utils/types";
 
 const initialState: IFormState = {
     description: '',

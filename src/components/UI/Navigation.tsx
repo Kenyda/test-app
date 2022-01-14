@@ -13,12 +13,6 @@ interface IRouteMatch extends RouteMatch {
 }
 
 const Navigation = () => {
-    function handleClick(event: React.MouseEvent<HTMLDivElement, MouseEvent>) {
-        event.preventDefault();
-        console.log(event)
-
-    }
-
     let location = useLocation();
 
     const matchedRoutes: IRouteMatch[] | null = matchRoutes(routes, location.pathname);
