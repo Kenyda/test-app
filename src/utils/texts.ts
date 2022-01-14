@@ -1,4 +1,4 @@
-import {IPost} from "../pages/Posts";
+import {IPost} from "../utils/types";
 
 export const TABLE_DATA = [
     {
@@ -63,8 +63,8 @@ export const FACTS: IPost[] = [
     },
     {
         id: 2,
-        description: 'На то, чтобы вылизать шерсть, кошка расходуется столько же воды, сколько на мочеиспускание.',
-        media: 'aR1jvXB_700b.jpg',
+        description: '«Общительные» кошки следуют за вами из комнаты в комнату, чтобы контролировать ваши действия.',
+        media: 'video.mp4',
     },
     {
         id: 3,
@@ -74,6 +74,6 @@ export const FACTS: IPost[] = [
     {
         id: 4,
         description: 'Нормальная температура тела у кошек около 38 градусов. Это чуть больше, чем у человека.',
-        media: 'video.mp4',
+        media: 'aR1jvXB_700b.jpg',
     },
 ]

@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from 'react';
 import PostsAPI from "../../api/PostsAPI";
 import {useParams} from "react-router-dom";
-import {IPost} from "../../pages/Posts";
-import {Card, CardContent, CardHeader, Container, Grid, Typography} from "@mui/material";
+import {IPost} from "../../utils/types";
+import {Card, CardContent, Container, Grid, Typography} from "@mui/material";
 import Loading from "../UI/Loading";
 import MediaContainer from "../MediaContainer";
 
@@ -29,6 +29,7 @@ const PostPage = () => {
                 <Card sx={{mt: 3}}>
                     <CardContent>
                         <Grid container
+                              spacing={2}
                               direction="row"
                               justifyContent="space-around">
                             <Grid item xs={12} md={3}>

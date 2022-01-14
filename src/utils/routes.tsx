@@ -38,6 +38,6 @@ export const routes: IRoute[] = [
             },
         ]
     },
-    { path: "*", element: <NotFoundPage /> },
+    { path: "/not_found", element: <NotFoundPage /> },
     { path: "*", element: <Navigate replace to="/not_found" />}
 ];

@@ -13,8 +13,8 @@ import Loading from "../UI/Loading";
 import {Navigate} from "react-router-dom";
 import {useTypedSelector} from "../../hooks/useTypedSelector";
 import {useDispatch} from "react-redux";
-import {IFormState} from "../../store/reducers/formReducer";
 import {resetFormValues, setFormValues} from "../../store/actionCreators/form";
+import {IFormState} from "../../utils/types";
 
 const PostCreateForm = () => {
     const [values, setValues] = useState<IFormState>({
@@ -97,7 +97,7 @@ const PostCreateForm = () => {
 
     return (
         newPost.isCreated
-            ? <Navigate replace to={`/posts/${newPost.id}`} />
+            ? <Navigate replace to='/posts' />
             : <Container maxWidth="lg">
                 {isLoading
                     ? <Loading loadingText={"Сохранение факта..."}/>
@@ -129,6 +129,7 @@ const PostCreateForm = () => {
                                             </strong>
                                           </p>
                                         : <input type="file"
+                                                 accept=".png, .jpg, .jpeg"
                                                  onChange={e => onMediaChange(e.target.files)}
                                         />
                                     }

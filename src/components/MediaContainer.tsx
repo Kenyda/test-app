@@ -2,21 +2,18 @@ import React, {useEffect, useState} from 'react';
 
 const MediaContainer = (props: {path: string | undefined, playVideo: boolean}) => {
     let splitPath;
-    let format;
-    const path = props.path ? props.path : 'noimage.png';
+    let [format, setFormat] = useState('');
     const [url, setUrl] = useState('');
     useEffect(() => {
         if (props.path) {
             splitPath = props.path.split('.');
-            format = splitPath[splitPath.length - 1];
-            if (format === 'mp4' && !props.playVideo) {
+            setFormat(splitPath[splitPath.length - 1]);
+            if (props.path.includes('base64')) {
+                setUrl(props.path)
+            } else if (props.path.includes('mp4') && !props.playVideo) {
                 setUrl(`/${process.env.PUBLIC_URL}static/video_preview.png`)
-            } else {
-                if (path.includes('base64')) {
-                    setUrl(path)
-                } else setUrl(`/${process.env.PUBLIC_URL}static/${path}`)
-            }
-        }
+            } else setUrl(`/${process.env.PUBLIC_URL}static/${props.path}`)
+        } else setUrl(`/${process.env.PUBLIC_URL}static/noimage.png`)
     }, [])
 
     return (

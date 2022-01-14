@@ -1,24 +1,4 @@
-export interface IFormState {
-    description: string,
-    media: string,
-    mediaData?: string,
-}
-
-export enum actionTypes {
-    SET_VALUES = 'SET_VALUES',
-    RESET_VALUES = 'RESET_VALUES',
-}
-
-interface ISetAction {
-    type: actionTypes.SET_VALUES;
-    payload: IFormState;
-}
-
-interface IResetAction {
-    type: actionTypes.RESET_VALUES;
-}
-
-export type formAction = ISetAction | IResetAction
+import {actionTypes, formAction, IFormState, IResetAction, ISetAction} from "../../utils/types";
 
 const initialState: IFormState = {
     description: '',

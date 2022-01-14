@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {actionTypes, formAction, IFormState} from "../reducers/formReducer";
+import {actionTypes, formAction, IFormState} from "../../utils/types";
 
 export const setFormValues = (data: IFormState) => {
     return (dispatch: Dispatch<formAction>) => {

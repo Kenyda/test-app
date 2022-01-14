@@ -1,6 +1,6 @@
 import React from 'react';
-import {Button, Card, CardContent, CardHeader, CardMedia, Grid, Typography} from "@mui/material";
-import {IPost} from "../../pages/Posts";
+import {Card, CardContent, CardHeader, Grid, Typography} from "@mui/material";
+import {IPost} from "../../utils/types";
 import {NavLink} from "react-router-dom";
 import MediaContainer from "../MediaContainer";
 
@@ -11,6 +11,7 @@ const PostCard = (props: {data: IPost, count: number}) => {
                 <CardHeader title={`Факт №${props.count}`} />
                 <CardContent>
                     <Grid container
+                          spacing={2}
                           direction="row"
                           justifyContent="space-around">
                         <Grid item xs={12} md={4}>

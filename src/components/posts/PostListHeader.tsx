@@ -13,10 +13,11 @@ const PostListHeader = () => {
                     <Grid item md={9}>
                         <Typography sx={{mb: 3}}>{FACTS_INTRODUCTION}</Typography>
                     </Grid>
+                    <Grid item md={3}>
+                        <img className="mediaContainer" src={`/${process.env.PUBLIC_URL}static/cat_profile.jpg`}/>
+                    </Grid>
                 </Grid>
-                <Grid container
-                      direction="row"
-                      justifyContent="flex-end">
+                <Grid container>
                     <Grid item>
                         <NavLink to='/posts/create' className="navbarLink">
                             <Button size="small" variant="outlined">Дополнить список фактов</Button>

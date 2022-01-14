@@ -1,16 +1,10 @@
-import React, {Dispatch, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import PostCard from "../components/posts/PostCard";
-import {Button, Container, Grid} from "@mui/material";
+import {Container, Grid} from "@mui/material";
 import PostsAPI from "../api/PostsAPI";
-import {NavLink} from "react-router-dom";
 import Loading from "../components/UI/Loading";
 import PostListHeader from "../components/posts/PostListHeader";
-
-export interface IPost {
-    id: number;
-    description: string;
-    media?: string;
-}
+import {IPost} from "../utils/types";
 
 const Posts = () => {
     let [data, setData] = useState<IPost[]>([]);

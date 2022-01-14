@@ -11,7 +11,7 @@ import {
     Toolbar,
     Typography
 } from "@mui/material";
-import {Link, NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 const Navbar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -36,7 +36,7 @@ const Navbar = () => {
                         sx={{ mr: 2, display: { xs: 'none', md: 'flex' } }}
                     >
                         <Icon>pets</Icon>
-                        <span>Диалоги о кошках</span>
+                        <span>Диалоги о котейке</span>
                         <Icon>pets</Icon>
                     </Typography>
 
@@ -73,6 +73,11 @@ const Navbar = () => {
                                     <NavLink to={page.link}><Typography textAlign="center">{page.name}</Typography></NavLink>
                                 </MenuItem>
                             ))}
+                            <MenuItem>
+                                <NavLink to='/dogs_definitions'>
+                                    <Typography textAlign="center">Почему собаки лучше</Typography>
+                                </NavLink>
+                            </MenuItem>
                         </Menu>
                     </Box>
                     <Typography
@@ -82,7 +87,7 @@ const Navbar = () => {
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
                         <Icon>pets</Icon>
-                        <span>Диалоги о кошках</span>
+                        <span>Диалоги о котейке</span>
                         <Icon>pets</Icon>
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -95,6 +100,12 @@ const Navbar = () => {
                                 <NavLink to={page.link} className="navbarLink">{page.name}</NavLink>
                             </Button>
                         ))}
+                        <Button
+                            onClick={handleCloseNavMenu}
+                            sx={{ my: 2, color: 'white', display: 'block' }}
+                        >
+                            <NavLink to='/dogs_definitions' className="navbarLink">Почему собаки лучше котиков</NavLink>
+                        </Button>
                     </Box>
                 </Toolbar>
             </Container>
