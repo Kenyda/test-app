@@ -1,37 +1,53 @@
-import React from 'react';
-import {Breadcrumbs, Container} from "@mui/material";
+import React from "react";
+import { Breadcrumbs, Container } from "@mui/material";
 import {
-    useLocation,
-    matchRoutes,
-    RouteMatch,
-    NavLink
+  useLocation,
+  matchRoutes,
+  RouteMatch,
+  NavLink,
 } from "react-router-dom";
-import {routes, IRoute} from "../../utils/routes";
+import { routes, IRoute } from "../../utils/routes";
 
 interface IRouteMatch extends RouteMatch {
-    route: IRoute,
+  route: IRoute;
 }
 
 const Navigation = () => {
-    let location = useLocation();
+  let location = useLocation();
 
-    const matchedRoutes: IRouteMatch[] | null = matchRoutes(routes, location.pathname);
-    const navRoutes = matchedRoutes ? matchedRoutes.filter(route => route.route.name !== undefined) : null;
+  const matchedRoutes: IRouteMatch[] | null = matchRoutes(
+    routes,
+    location.pathname
+  );
+  const navRoutes = matchedRoutes
+    ? matchedRoutes.filter((route) => route.route.name !== undefined)
+    : null;
 
-    return (
-        <Container maxWidth="lg">
-            <div>
-                <Breadcrumbs>
-                    {navRoutes && navRoutes.map((routeMatch, index) =>
-                        routeMatch.route.name &&
-                        <NavLink to={routeMatch.pathname}
-                                 className={index === navRoutes.length - 1 ? "disabledLink" : "activeLink"}
-                                 key={routeMatch.pathname}>{routeMatch.route.name}</NavLink>
-                    )}
-                </Breadcrumbs>
-            </div>
-        </Container>
-    );
+  return (
+    <Container maxWidth="lg">
+      <div>
+        <Breadcrumbs>
+          {navRoutes &&
+            navRoutes.map(
+              (routeMatch, index) =>
+                routeMatch.route.name && (
+                  <NavLink
+                    to={routeMatch.pathname}
+                    className={
+                      index === navRoutes.length - 1
+                        ? "disabledLink"
+                        : "activeLink"
+                    }
+                    key={routeMatch.pathname}
+                  >
+                    {routeMatch.route.name}
+                  </NavLink>
+                )
+            )}
+        </Breadcrumbs>
+      </div>
+    </Container>
+  );
 };
 
 export default Navigation;

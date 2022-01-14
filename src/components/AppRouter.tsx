@@ -1,11 +1,9 @@
-import React from 'react';
-import {useRoutes} from "react-router-dom";
-import {routes} from "../utils/routes";
+import React from "react";
+import { useRoutes } from "react-router-dom";
+import { routes } from "../utils/routes";
 
 const AppRouter = () => {
-    return (
-        useRoutes(routes)
-    );
+  return useRoutes(routes);
 };
 
 export default AppRouter;
